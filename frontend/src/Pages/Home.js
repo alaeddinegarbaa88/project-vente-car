@@ -6,13 +6,14 @@ import { getCars } from "../Api/CarApi";
 
 
 import { setCars } from "../redux/Store/CarSlice";
+import { setUser } from "../redux/Store/UserSlice";
 import CardCars from './CardCars'
 const Home = () => {
   //Call hooks
 const dispatch = useDispatch()
   //Call car state from store
   const Cars = useSelector(state => state.Car);
-  //get data and set it in the store of articles
+  //get data and set it in the store of cars
  const getAllcar=async()=>{
   const data = await getCars()
   dispatch(setCars(data))
@@ -20,6 +21,7 @@ const dispatch = useDispatch()
 useEffect(()=>{
 getAllcar()
 },[])
+
 
 console.log('cars',Cars)
   return (

@@ -15,7 +15,7 @@ userRouter.post("/register", RegisterValidator,validation,createUser);
 userRouter.post("/login",LoginValidator,login);
 
 //get a user
-userRouter.get('/getaUser/:id',isAuth,(req,res)=>{
+userRouter.get('/getaUser/', isAuth, (req,res)=>{
     res.send(req.user)
 })
 

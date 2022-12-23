@@ -3,7 +3,7 @@ const userSchema = require ('../models/user')
 
 exports.isAuth= async (req,res,next)=>{
    try {
-    const token = req.header('Authorized')
+    const token = req.header('Authorization')
 
     var decoder = jwt.verify(token,process.env.privateKey)
 
@@ -12,10 +12,17 @@ exports.isAuth= async (req,res,next)=>{
     }
 
     const user = await userSchema.findById(decoder.id)
+    if (!user) {
+        throw new Error("user not found")
+    }
+
+    user.password = undefined
     req.user = user
     next()
 
    } catch (err) {
-    res.status(500).send({msg:"you dind't do it auth part"})
+    console.log(err
+        );
+    res.status(500).send({msg:"Internal Error"})
    } 
 }

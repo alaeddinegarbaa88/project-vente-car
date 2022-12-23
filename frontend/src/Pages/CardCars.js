@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CardCars = ({cars}) => {
-    console.log(cars,"cars")
+    
   return (
     <div style={{margin:"20px"}}>
           <div className="content-groups">

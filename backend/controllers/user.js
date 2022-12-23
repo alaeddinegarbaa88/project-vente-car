@@ -33,6 +33,8 @@ var token = jwt.sign(payload,process.env.privateKey)
   }
 };
 
+
+
 exports.login = async (req,res)=>{
   try {
     const {email,password}=req.body
@@ -55,3 +57,16 @@ var token = jwt.sign(payload,process.env.privateKey)
     console.log(err)
   }
 }
+
+
+exports.getUsers=async(req,res)=>{
+  try{
+      const Users = await userSchema.find()
+
+res.send({msg:'user is here',Users})
+  }catch(err){
+      res.send({msg:'no user'})
+  }
+}
+
+
